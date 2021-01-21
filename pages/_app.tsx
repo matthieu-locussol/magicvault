@@ -20,6 +20,7 @@ export default function MyApp(props: AppProps) {
 			},
 			secondary: {
 				main: '#d98c11',
+				contrastText: '#ffffff',
 			},
 			background: {
 				default: '#f4f8fc',
@@ -30,7 +31,7 @@ export default function MyApp(props: AppProps) {
 			},
 		},
 		typography: {
-			fontFamily: `Poppins, 'Yusei Magic'`,
+			fontFamily: 'Poppins, Metamorphous',
 		},
 	});
 
