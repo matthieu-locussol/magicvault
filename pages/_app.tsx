@@ -16,18 +16,17 @@ export default function MyApp(props: AppProps) {
 		palette: {
 			type: 'light',
 			primary: {
-				main: '#236348',
-				contrastText: '#ffffff',
+				main: '#064d8c',
 			},
 			secondary: {
-				main: '#3a4a51',
+				main: '#d98c11',
 			},
 			background: {
-				default: '#ffffff',
+				default: '#f4f8fc',
 			},
 			text: {
-				primary: '#173915',
-				secondary: '#515b55',
+				primary: '#1f3356',
+				secondary: '#4f5589',
 			},
 		},
 		typography: {
