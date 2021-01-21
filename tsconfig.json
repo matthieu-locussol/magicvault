@@ -1,0 +1,34 @@
+{
+	"compilerOptions": {
+	  "baseUrl": ".",
+	  "allowJs": true,
+	  "alwaysStrict": true,
+	  "esModuleInterop": true,
+	  "forceConsistentCasingInFileNames": true,
+	  "jsx": "preserve",
+	  "lib": [
+		 "dom",
+		 "es5",
+		 "es6",
+		 "ES2020.String"
+	  ],
+	  "module": "esnext",
+	  "moduleResolution": "node",
+	  "noFallthroughCasesInSwitch": true,
+	  "noUnusedLocals": true,
+	  "noUnusedParameters": true,
+	  "resolveJsonModule": true,
+	  "strict": true,
+	  "target": "es5",
+	  "skipLibCheck": true,
+	  "noEmit": true,
+	  "isolatedModules": true,
+	  "paths": { "@/*":["./*"] }
+	},
+	"exclude": [
+	  "node_modules"
+	],
+	"include": [
+	  "utils", "store", "components", "pages"
+	]
+ }
