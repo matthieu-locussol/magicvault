@@ -9,16 +9,19 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		left: {
 			width: '100%',
-			maxWidth: '396px',
+			maxWidth: '388px',
+			marginRight: theme.spacing(4),
 			[theme.breakpoints.down('sm')]: {
 				maxWidth: '100%',
+				marginRight: 0,
 			},
 		},
 		right: {
 			width: '100%',
-			maxWidth: '820px',
+			maxWidth: '812px',
 			[theme.breakpoints.down('sm')]: {
 				maxWidth: '100%',
+				marginTop: theme.spacing(4),
 			},
 		},
 	}),
@@ -38,11 +41,7 @@ const Column = ({ type, children }: ColumnProps) => {
 		right: classes.right,
 	}[type];
 
-	return (
-		// <div className={classes.root}>
-		<div className={columnClass}>{children}</div>
-		// </div>
-	);
+	return <div className={columnClass}>{children}</div>;
 };
 
 export default Column;
