@@ -12,6 +12,7 @@ export default class MyDocument extends Document {
 					href="https://fonts.googleapis.com/css2?family=Metamorphous&display=swap"
 					rel="stylesheet"
 				/>
+				<title>MagicVault ・ Organize your Magic collections!</title>
 			</Head>
 			<body>
 				<Main />
