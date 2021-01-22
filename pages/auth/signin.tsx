@@ -46,7 +46,7 @@ const SignIn = ({ providers }: SignInProps) => {
 	const buttonsClasses = [classes.google, classes.facebook];
 
 	return (
-		<Layout>
+		<Layout hideFooter>
 			<Column type="full">
 				<Card>
 					{Object.values(providers).map((provider, idx) => (
