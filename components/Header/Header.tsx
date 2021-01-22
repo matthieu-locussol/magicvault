@@ -1,5 +1,6 @@
-import { AppBar, AppBarProps, Button, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, AppBarProps, Button, Toolbar } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Logo from '@/components/Header/Logo';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -16,10 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			maxWidth: theme.breakpoints.values.lg,
 		},
-		title: {
-			fontFamily: 'Metamorphous',
-			marginRight: 'auto',
-		},
 	}),
 );
 
@@ -29,9 +26,7 @@ const Header = (props: AppBarProps) => {
 	return (
 		<AppBar className={classes.root} {...props}>
 			<Toolbar className={classes.toolbar}>
-				<Typography color="textPrimary" variant="h5" className={classes.title}>
-					<b>M</b>agic<b>V</b>ault
-				</Typography>
+				<Logo />
 				<Button variant="contained" color="primary">
 					Login
 				</Button>
