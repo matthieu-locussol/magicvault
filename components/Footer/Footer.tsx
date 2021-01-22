@@ -38,9 +38,12 @@ const Footer = () => {
 					</Typography>
 					<Typography variant="body2" color="textSecondary" gutterBottom>
 						The search results are provided by the{' '}
-						<Link href="https://scryfall.com/">Scryfall API</Link> which itself uses other data sources.
-						Portions of Scryfall are unofficial Fan Content permitted under the{' '}
-						<Link href="https://company.wizards.com/fancontentpolicy">
+						<Link target="_blank" rel="noopener" href="https://scryfall.com/">
+							Scryfall API
+						</Link>{' '}
+						which itself uses other data sources. Portions of Scryfall are unofficial Fan Content
+						permitted under the{' '}
+						<Link target="_blank" rel="noopener" href="https://company.wizards.com/fancontentpolicy">
 							Wizards of the Coast Fan Content Policy
 						</Link>
 						.
