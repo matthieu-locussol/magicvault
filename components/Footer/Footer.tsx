@@ -1,4 +1,7 @@
+import { Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Information from '@/components/Footer/Information';
+import Link from '@/components/Link';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -24,7 +27,30 @@ const Footer = () => {
 
 	return (
 		<div className={classes.root}>
-			<div className={classes.content}>lol</div>
+			<div className={classes.content}>
+				<Information>
+					<Typography variant="h6" gutterBottom>
+						Product
+					</Typography>
+					<Typography variant="body2" color="textSecondary" gutterBottom>
+						I would like to draw your attention to the fact that Kanjisho uses multiple sources of data
+						provided by third parties.
+					</Typography>
+					<Typography variant="body2" color="textSecondary" gutterBottom>
+						The search results are provided by the{' '}
+						<Link href="https://scryfall.com/">Scryfall API</Link> which itself uses other data sources.
+						Portions of Scryfall are unofficial Fan Content permitted under the{' '}
+						<Link href="https://company.wizards.com/fancontentpolicy">
+							Wizards of the Coast Fan Content Policy
+						</Link>
+						.
+					</Typography>
+					<Typography variant="body2" color="textSecondary">
+						If you find any vices, errors or malfunctions, please let me know so that I can correct
+						them.
+					</Typography>
+				</Information>
+			</div>
 		</div>
 	);
 };
