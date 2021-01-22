@@ -28,7 +28,7 @@ export default function MyApp(props: AppProps) {
 			},
 			text: {
 				primary: '#1f3356',
-				secondary: '#4f5589',
+				secondary: '#6f7589',
 			},
 		},
 		typography: {
