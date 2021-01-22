@@ -1,7 +1,7 @@
 import { AppBar, AppBarProps, Button, Toolbar } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Logo from '@/components/Header/Logo';
 import { signIn, signOut, useSession } from 'next-auth/client';
+import Logo from '@/components/Header/Logo';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -35,7 +35,10 @@ const Header = (props: AppBarProps) => {
 					</Button>
 				)}
 				{session && (
-					<Button variant="contained" color="primary" onClick={() => signOut()}>
+					<Button
+						variant="contained"
+						color="primary"
+						onClick={() => signOut({ callbackUrl: 'http://localhost:3000/auth/signout' })}>
 						{loading ? '...' : `Logout (${session.user.email})`}
 					</Button>
 				)}
