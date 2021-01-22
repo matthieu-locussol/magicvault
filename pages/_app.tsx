@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import Router from 'next/router';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -46,6 +47,9 @@ export default function MyApp(props: AppProps) {
 
 	return (
 		<ThemeProvider theme={theme}>
+			<Head>
+				<title>MagicVault ・ Organize your Magic collections!</title>
+			</Head>
 			<CssBaseline />
 			<Component {...pageProps} />
 		</ThemeProvider>
