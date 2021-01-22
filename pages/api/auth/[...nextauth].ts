@@ -8,8 +8,16 @@ const options: InitOptions = {
 			clientId: process.env.GOOGLE_ID || '',
 			clientSecret: process.env.GOOGLE_SECRET || '',
 		}),
+		Providers.Facebook({
+			clientId: process.env.FACEBOOK_ID || '',
+			clientSecret: process.env.FACEBOOK_SECRET || '',
+		}),
 	],
 	secret: process.env.SECRET,
+	pages: {
+		signIn: '/auth/signin',
+		signOut: '/auth/signout',
+	},
 };
 
 export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, options);
