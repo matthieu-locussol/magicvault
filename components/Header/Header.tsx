@@ -1,6 +1,7 @@
 import { AppBar, AppBarProps, Button, Toolbar } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Logo from '@/components/Header/Logo';
+import { signIn, signOut, useSession } from 'next-auth/client';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -22,14 +23,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Header = (props: AppBarProps) => {
 	const classes = useStyles();
+	const [session, loading] = useSession();
 
 	return (
 		<AppBar className={classes.root} {...props}>
 			<Toolbar className={classes.toolbar}>
 				<Logo />
-				<Button variant="contained" color="primary">
-					Login
-				</Button>
+				{!session && (
+					<Button variant="contained" color="primary" onClick={() => signIn()}>
+						{loading ? '...' : 'Login'}
+					</Button>
+				)}
+				{session && (
+					<Button variant="contained" color="primary" onClick={() => signOut()}>
+						{loading ? '...' : `Logout (${session.user.email})`}
+					</Button>
+				)}
 			</Toolbar>
 		</AppBar>
 	);
