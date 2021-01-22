@@ -1,13 +1,15 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Header from '@/components/Header/Header';
 import SearchBar from '@/components/Header/SearchBar';
+import Footer from '@/components/Footer/Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			width: '100%',
 			display: 'flex',
-			justifyContent: 'center',
+			alignItems: 'center',
+			flexDirection: 'column',
 		},
 		layout: {
 			display: 'flex',
@@ -30,10 +32,11 @@ const useStyles = makeStyles((theme: Theme) =>
 interface LayoutProps {
 	hideHeader?: boolean;
 	hideSearch?: boolean;
+	hideFooter?: boolean;
 	children: React.ReactNode;
 }
 
-const Layout = ({ hideHeader, hideSearch, children }: LayoutProps) => {
+const Layout = ({ hideHeader, hideSearch, hideFooter, children }: LayoutProps) => {
 	const classes = useStyles();
 
 	return (
@@ -41,6 +44,7 @@ const Layout = ({ hideHeader, hideSearch, children }: LayoutProps) => {
 			{!hideHeader && <Header />}
 			{!hideSearch && <SearchBar />}
 			<div className={classes.layout}>{children}</div>
+			{!hideFooter && <Footer />}
 		</div>
 	);
 };
