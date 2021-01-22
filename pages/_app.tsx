@@ -5,6 +5,7 @@ import Router from 'next/router';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
+import { Provider as AuthProvider } from 'next-auth/client';
 import 'nprogress/nprogress.css';
 import './main.css';
 
@@ -46,12 +47,14 @@ export default function MyApp(props: AppProps) {
 	Router.events.on('routeChangeError', () => NProgress.done());
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Head>
-				<title>MagicVault ・ Organize your Magic collections!</title>
-			</Head>
-			<CssBaseline />
-			<Component {...pageProps} />
-		</ThemeProvider>
+		<AuthProvider session={pageProps.session}>
+			<ThemeProvider theme={theme}>
+				<Head>
+					<title>MagicVault ・ Organize your Magic collections!</title>
+				</Head>
+				<CssBaseline />
+				<Component {...pageProps} />
+			</ThemeProvider>
+		</AuthProvider>
 	);
 }
