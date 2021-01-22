@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, LinkProps } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
@@ -12,10 +13,10 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-const Logo = (props: LinkProps) => {
+const Logo = React.forwardRef((props: LinkProps, ref: any) => {
 	const classes = useStyles();
 
-	return <Link className={classes.root} {...props} />;
-};
+	return <Link ref={ref} className={classes.root} {...props} />;
+});
 
 export default Logo;
