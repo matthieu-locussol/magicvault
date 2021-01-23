@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { AppBar, AppBarProps, Button, Toolbar } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { signIn, signOut, useSession } from 'next-auth/client';
@@ -30,9 +31,11 @@ const Header = (props: AppBarProps) => {
 			<Toolbar className={classes.toolbar}>
 				<Logo />
 				{!session && (
-					<Button variant="contained" color="primary" onClick={() => signIn()}>
-						{loading ? '...' : 'Login'}
-					</Button>
+					<Link href="/auth/signin" passHref>
+						<Button variant="contained" color="primary">
+							{loading ? '...' : 'Login'}
+						</Button>
+					</Link>
 				)}
 				{session && (
 					<Button
