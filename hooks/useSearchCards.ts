@@ -5,7 +5,7 @@ export const useSearchCards = () => {
 	const [store, dispatch] = useStore();
 
 	return async (query: string) => {
-		if (!store.search.loading) {
+		if (!store.search.loading && query.length > 0) {
 			try {
 				dispatch({ type: 'START_SEARCH', terms: query });
 				const results = await searchCards(query);
