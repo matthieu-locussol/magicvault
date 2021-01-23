@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
 import { Provider as AuthProvider } from 'next-auth/client';
+import { StoreProvider } from '@/store';
 import 'nprogress/nprogress.css';
 import './main.css';
 
@@ -48,13 +49,15 @@ export default function MyApp(props: AppProps) {
 
 	return (
 		<AuthProvider session={pageProps.session}>
-			<ThemeProvider theme={theme}>
-				<Head>
-					<title>MagicVault ・ Organize your Magic collections!</title>
-				</Head>
-				<CssBaseline />
-				<Component {...pageProps} />
-			</ThemeProvider>
+			<StoreProvider>
+				<ThemeProvider theme={theme}>
+					<Head>
+						<title>MagicVault ・ Organize your Magic collections!</title>
+					</Head>
+					<CssBaseline />
+					<Component {...pageProps} />
+				</ThemeProvider>
+			</StoreProvider>
 		</AuthProvider>
 	);
 }
