@@ -3,8 +3,11 @@ import { Button, Typography } from '@material-ui/core';
 import Card from '@/components/Card';
 import Column from '@/components/Layout/Column';
 import Layout from '@/components/Layout/Layout';
+import { useStore } from '@/store';
 
 const Home = () => {
+	const [store] = useStore();
+
 	return (
 		<Layout>
 			<Column type="left">
@@ -20,11 +23,11 @@ const Home = () => {
 			<Column type="right">
 				<Card>
 					<Typography variant="h4" gutterBottom>
-						Hello world!
+						Results
 					</Typography>
-					<Button variant="contained" color="primary" size="large">
-						My special button
-					</Button>
+					<Typography variant="body2" gutterBottom>
+						{store.search.results.length > 0 ? JSON.stringify(store.search.results) : 'No results'}
+					</Typography>
 				</Card>
 			</Column>
 		</Layout>
