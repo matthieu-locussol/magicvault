@@ -47,9 +47,9 @@ const SearchBar = (props: AppBarProps) => {
 	const [query, setQuery] = useState('');
 	const searchCards = useSearchCards();
 
-	const search = async (e?: FormEvent<HTMLFormElement>) => {
+	const search = (e?: FormEvent<HTMLFormElement>) => {
 		e?.preventDefault();
-		await searchCards(query);
+		searchCards(query);
 	};
 
 	return (
