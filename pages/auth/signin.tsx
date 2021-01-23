@@ -51,10 +51,11 @@ const SignIn = ({ providers }: SignInProps) => {
 				<Card>
 					{Object.values(providers).map((provider, idx) => (
 						<Button
+							key={provider.name}
 							variant="contained"
 							color="primary"
 							size="large"
-							onClick={() => signIn(provider.id, { callbackUrl: 'http://localhost:3000' })}
+							onClick={() => signIn(provider.id, { callbackUrl: process.env.NEXTAUTH_URL })}
 							startIcon={buttonsIcons[idx]}
 							className={clsx(classes.button, buttonsClasses[idx])}>
 							Sign in with {provider.name}
