@@ -26,7 +26,13 @@ const Home = () => {
 						Results
 					</Typography>
 					<Typography variant="body2" gutterBottom>
-						{store.search.results.length > 0 ? JSON.stringify(store.search.results) : 'No results'}
+						{store.search.loading
+							? '...'
+							: store.search.results === undefined
+							? `No results for "${store.search.terms}".`
+							: store.search.results.length === 0
+							? 'You can search using the SearchBar.'
+							: JSON.stringify(store.search.results)}
 					</Typography>
 				</Card>
 			</Column>
