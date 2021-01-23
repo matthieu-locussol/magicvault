@@ -1,5 +1,5 @@
 import { useStore } from '@/store';
-import { searchCards } from '@/api/scryfall';
+import { searchCards } from '@/utils/scryfall';
 
 export const useSearchCards = () => {
 	const [store, dispatch] = useStore();
