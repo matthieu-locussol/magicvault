@@ -17,7 +17,7 @@ const SignOut = () => {
 	const classes = useStyles();
 
 	return (
-		<Layout>
+		<Layout hideFooter>
 			<Column type="full">
 				<Card>
 					<Typography variant="h5" className={classes.title}>
