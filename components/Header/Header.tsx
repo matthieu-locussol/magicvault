@@ -41,7 +41,7 @@ const Header = (props: AppBarProps) => {
 					<Button
 						variant="contained"
 						color="primary"
-						onClick={() => signOut({ callbackUrl: 'http://localhost:3000/auth/signout' })}>
+						onClick={() => signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/auth/signout` })}>
 						{loading ? '...' : `Logout (${session.user.email})`}
 					</Button>
 				)}
