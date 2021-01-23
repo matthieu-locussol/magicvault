@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { AppBar, AppBarProps, Button, Toolbar } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/client';
 import Logo from '@/components/Header/Logo';
 
 const useStyles = makeStyles((theme: Theme) =>
