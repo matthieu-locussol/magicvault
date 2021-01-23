@@ -32,7 +32,7 @@ const Home = () => {
 							? `No results for "${store.search.terms}".`
 							: store.search.results.length === 0
 							? 'You can search using the SearchBar.'
-							: JSON.stringify(store.search.results)}
+							: store.search.results.map((res) => <p>{res.name}</p>)}
 					</Typography>
 				</Card>
 			</Column>
