@@ -1,12 +1,15 @@
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
 
+type ActionType = 'START_SEARCH' | 'END_SEARCH';
+
 interface ActionInterface {
-	type: string;
+	type: ActionType;
 	payload?: any;
 }
 
 interface StateInterface {
 	search: {
+		field: string;
 		results: any[];
 		loading: boolean;
 	};
@@ -14,6 +17,7 @@ interface StateInterface {
 
 const initialState: StateInterface = {
 	search: {
+		field: '',
 		results: [],
 		loading: false,
 	},
