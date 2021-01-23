@@ -55,10 +55,10 @@ const SignIn = ({ providers }: SignInProps) => {
 							variant="contained"
 							color="primary"
 							size="large"
-							onClick={() => signIn(provider.id, { callbackUrl: process.env.NEXTAUTH_URL })}
+							onClick={() => signIn(provider?.id, { callbackUrl: process.env.NEXTAUTH_URL })}
 							startIcon={buttonsIcons[idx]}
 							className={clsx(classes.button, buttonsClasses[idx])}>
-							Sign in with {provider.name}
+							Sign in with {provider?.name}
 						</Button>
 					))}
 				</Card>
