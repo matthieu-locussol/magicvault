@@ -10,7 +10,8 @@
 		 "dom",
 		 "es5",
 		 "es6",
-		 "ES2020.String"
+		 "ES2020.String",
+		 "ESNext",
 	  ],
 	  "module": "esnext",
 	  "moduleResolution": "node",
