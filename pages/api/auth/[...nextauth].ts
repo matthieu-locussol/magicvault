@@ -18,7 +18,6 @@ const options: InitOptions = {
 		signIn: '/auth/signin',
 		signOut: '/auth/signout',
 	},
-	debug: true,
 };
 
 export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, options);
