@@ -25,15 +25,17 @@ const Home = () => {
 					<Typography variant="h4" gutterBottom>
 						Results
 					</Typography>
-					<Typography variant="body2" gutterBottom>
-						{store.search.loading
-							? '...'
-							: store.search.results === undefined
-							? `No results for "${store.search.terms}".`
-							: store.search.results.length === 0
-							? 'You can search using the SearchBar.'
-							: store.search.results.map((res) => <p>{res.name}</p>)}
-					</Typography>
+					{store.search.loading
+						? '...'
+						: store.search.results === undefined
+						? `No results for "${store.search.terms}".`
+						: store.search.results.length === 0
+						? 'You can search using the SearchBar.'
+						: store.search.results.map((res, idx) => (
+								<Typography variant="body2" gutterBottom key={idx}>
+									{res.name}
+								</Typography>
+						  ))}
 				</Card>
 			</Column>
 		</Layout>
