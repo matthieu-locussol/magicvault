@@ -4,6 +4,7 @@ import Card from '@/components/Card';
 import Column from '@/components/Layout/Column';
 import Layout from '@/components/Layout/Layout';
 import { useStore } from '@/store';
+import ManaCost from '@/components/ManaCost';
 
 const Home = () => {
 	const [store] = useStore();
@@ -32,9 +33,12 @@ const Home = () => {
 						: store.search.results.length === 0
 						? 'You can search using the SearchBar.'
 						: store.search.results.map((res, idx) => (
-								<Typography variant="body2" gutterBottom key={idx}>
-									{res.name}
-								</Typography>
+								<>
+									<Typography variant="body2" key={idx}>
+										{res.name}
+									</Typography>
+									<ManaCost value={res.mana_cost} />
+								</>
 						  ))}
 				</Card>
 			</Column>
