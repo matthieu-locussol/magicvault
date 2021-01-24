@@ -18,11 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			maxWidth: theme.breakpoints.values.lg,
 			paddingLeft: theme.spacing(3),
 			paddingRight: theme.spacing(3),
-			marginTop: theme.spacing(26),
+			marginTop: theme.spacing(4),
 			[theme.breakpoints.down('sm')]: {
 				paddingLeft: 0,
 				paddingRight: 0,
-				marginTop: theme.spacing(24),
 				flexDirection: 'column',
 			},
 		},

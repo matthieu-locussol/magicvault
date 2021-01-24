@@ -14,14 +14,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			alignItems: 'center',
 			background: 'white',
 			boxShadow: 'none',
-			borderTop: '1px solid #dce0e9',
 			borderBottom: '1px solid #dce0e9',
 			paddingTop: theme.spacing(1),
 			paddingBottom: theme.spacing(1),
-			marginTop: theme.spacing(10),
-			[theme.breakpoints.down('sm')]: {
-				marginTop: theme.spacing(9),
-			},
 		},
 		form: {
 			width: '100%',
@@ -53,7 +48,7 @@ const SearchBar = (props: AppBarProps) => {
 	};
 
 	return (
-		<AppBar className={classes.root} {...props}>
+		<AppBar className={classes.root} position="relative" {...props}>
 			<Toolbar className={classes.toolbar}>
 				<form onSubmit={search} className={classes.form}>
 					<TextField

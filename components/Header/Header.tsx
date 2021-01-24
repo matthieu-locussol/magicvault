@@ -27,7 +27,7 @@ const Header = (props: AppBarProps) => {
 	const [session, loading] = useSession();
 
 	return (
-		<AppBar className={classes.root} {...props}>
+		<AppBar className={classes.root} position="relative" {...props}>
 			<Toolbar className={classes.toolbar}>
 				<Logo />
 				{!session && (
