@@ -4,7 +4,8 @@ import Card from '@/components/Card';
 import Column from '@/components/Layout/Column';
 import Layout from '@/components/Layout/Layout';
 import { useStore } from '@/store';
-import ManaCost from '@/components/ManaCost';
+import CardImage from '@/components/Card/CardImage';
+import ManaCost from '@/components/Card/ManaCost';
 
 const Home = () => {
 	const [store] = useStore();
@@ -38,6 +39,8 @@ const Home = () => {
 										{res.name}
 									</Typography>
 									<ManaCost value={res.mana_cost} />
+									{console.log(res)}
+									<CardImage data={res} />
 								</>
 						  ))}
 				</Card>
