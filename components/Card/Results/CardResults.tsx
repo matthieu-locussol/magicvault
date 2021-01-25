@@ -28,6 +28,14 @@ const useStyles = makeStyles(() =>
 				backgroundColor: '#f4f8fc',
 			},
 		},
+		cell: {
+			maxWidth: '140px',
+			display: 'inline-block',
+			padding: '1px',
+			overflow: 'hidden',
+			whiteSpace: 'nowrap',
+			textOverflow: 'ellipsis',
+		},
 	}),
 );
 
@@ -49,8 +57,8 @@ const CardResults = () => {
 		R: (card: Card) => card.rarity.charAt(0).toUpperCase(),
 		LA: (card: Card) => card.lang.toUpperCase(),
 		ARTIST: (card: Card) => card.artist,
-		USD: (card: Card) => `$${card.prices.usd}`,
-		EUR: (card: Card) => `€${card.prices.eur}`,
+		USD: (card: Card) => (card.prices.usd ? `$${card.prices.usd}` : ''),
+		EUR: (card: Card) => (card.prices.eur ? `€${card.prices.eur}` : ''),
 		TIX: (card: Card) => card.prices.tix,
 	};
 
@@ -64,7 +72,13 @@ const CardResults = () => {
 				page={store.search.page}
 				onChangePage={handleChangePage}
 				labelDisplayedRows={({ from, to, count }) =>
-					store.search.loading ? '' : `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`
+					store.search.loading
+						? ''
+						: `${from} - ${to} of ${
+								count !== -1
+									? `${count} cards where the name includes "${store.search.query}"`
+									: `more than ${to}`
+						  }`
 				}
 			/>
 			{store.search.results && store.search.results.length > 0 ? (
@@ -83,7 +97,9 @@ const CardResults = () => {
 							{store.search.results.map((card: any, idx: number) => (
 								<TableRow hover className={classes.row} key={idx}>
 									{Object.values(columns).map((getter, idc) => (
-										<TableCell key={`${idx}-${idc}`}>{getter(card)}</TableCell>
+										<TableCell key={`${idx}-${idc}`}>
+											<span className={classes.cell}>{getter(card)}</span>
+										</TableCell>
 									))}
 								</TableRow>
 							))}
