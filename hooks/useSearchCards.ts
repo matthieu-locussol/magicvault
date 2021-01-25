@@ -7,7 +7,6 @@ export const useSearchCards = () => {
 	return async (query: string, page: number = 0) => {
 		if (!store.search.loading && query.length > 0) {
 			try {
-				console.log('dispatching: ', page);
 				dispatch({ type: 'START_SEARCH', query, page });
 				const results = await searchCards(query, page);
 				if (results.status === 200) {
