@@ -6,9 +6,10 @@ export const scryfall = axios.create({
 });
 
 // https://scryfall.com/docs/api/cards/search
-export const searchCards = (searchValue: string) =>
+export const searchCards = (query: string, page: number) =>
 	scryfall.get('/cards/search', {
 		params: {
-			q: searchValue,
+			q: query,
+			page,
 		},
 	});
