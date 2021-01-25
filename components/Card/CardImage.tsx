@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Card } from '@/types/Card';
 
 const useStyles = makeStyles(() =>
 	createStyles({
@@ -11,19 +12,19 @@ const useStyles = makeStyles(() =>
 );
 
 interface CardImageProps {
-	data: any;
+	card: Card;
 }
 
-const CardImage = ({ data }: CardImageProps) => {
+const CardImage = ({ card }: CardImageProps) => {
 	const classes = useStyles();
 	const [imageUri, setImageUri] = useState('');
 
 	useEffect(() => {
-		if (data?.image_uris?.large) {
-			setImageUri(data.image_uris.large);
-		} else if (data?.card_faces.length > 0) {
-			const face = data.card_faces[0];
-			setImageUri(face.image_uris.large);
+		if (card?.image_uris?.large) {
+			setImageUri(card.image_uris.normal);
+		} else if (card?.card_faces && card?.card_faces?.length > 0) {
+			const face = card.card_faces[0];
+			setImageUri(face?.image_uris?.normal || '');
 		}
 	}, []);
 
