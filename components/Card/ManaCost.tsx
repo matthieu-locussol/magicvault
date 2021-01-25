@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import * as Icons from '@/components/Icons';
+import { Card } from '@/types/Card';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -80,10 +81,10 @@ type ManaCostType =
 	| '//';
 
 interface ManaCostProps {
-	value: string;
+	value: Card['mana_cost'];
 }
 
-const ManaCost = ({ value = '' }: ManaCostProps) => {
+const ManaCost = ({ value }: ManaCostProps) => {
 	const classes = useStyles();
 
 	const props = {
@@ -144,13 +145,13 @@ const ManaCost = ({ value = '' }: ManaCostProps) => {
 		'//': <span className={classes.separator}> // </span>,
 	};
 
-	return (
+	return value ? (
 		<Typography variant="body1" className={classes.root}>
 			{(value.replaceAll('}', '} ').split(' ') as ManaCostType[]).map(
 				(fragment: ManaCostType) => mappings[fragment],
 			)}
 		</Typography>
-	);
+	) : null;
 };
 
 export default ManaCost;
