@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Image, { ImageProps } from 'next/image';
+import Image from 'next/image';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Skeleton } from '@material-ui/lab';
 
@@ -15,36 +15,25 @@ interface CardImageProps {
 	data: any;
 }
 
-const CardImage = (props: CardImageProps & ImageProps) => {
+const CardImage = ({ data }: CardImageProps) => {
 	const classes = useStyles();
 	const [imageUri, setImageUri] = useState('');
-	const [loading, setLoading] = useState(false);
 
 	const CardImageSkeleton = () => (
 		<Skeleton variant="rect" animation="wave" width={244} height={340} className={classes.root} />
 	);
 
 	useEffect(() => {
-		if (props.data?.image_uris?.large) {
-			setImageUri(props.data.image_uris.large);
-		} else if (props.data?.card_faces.length > 0) {
-			const face = props.data.card_faces[0];
+		if (data?.image_uris?.large) {
+			setImageUri(data.image_uris.large);
+		} else if (data?.card_faces.length > 0) {
+			const face = data.card_faces[0];
 			setImageUri(face.image_uris.large);
 		}
 	}, []);
 
-	return !loading && imageUri ? (
-		<Image
-			{...props}
-			layout="fixed"
-			src={imageUri}
-			alt=""
-			width={244}
-			height={340}
-			className={classes.root}
-			onLoadStart={() => setLoading(true)}
-			onLoadedData={() => setLoading(false)}
-		/>
+	return imageUri ? (
+		<Image alt="" width={244} height={340} className={classes.root} src={imageUri} layout="fixed" />
 	) : (
 		<CardImageSkeleton />
 	);
