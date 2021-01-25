@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			},
 		},
 		cost: {
-			width: theme.spacing(2.5),
+			width: theme.spacing(2),
 			borderRadius: theme.spacing(100),
 			boxShadow: '-1px 1px 0 rgba(0, 0, 0, 0.85)',
 		},
