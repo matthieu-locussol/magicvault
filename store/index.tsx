@@ -11,6 +11,13 @@ type ActionType =
 			type: 'END_SEARCH';
 			results: Card[] | undefined;
 			resultsCount: number;
+	  }
+	| {
+			type: 'START_UPDATE_PROFILE';
+	  }
+	| {
+			type: 'END_UPDATE_PROFILE';
+			ownedCards: Card[];
 	  };
 
 interface StateInterface {
@@ -21,6 +28,10 @@ interface StateInterface {
 		resultsCount: number;
 		loading: boolean;
 	};
+	profile: {
+		ownedCards: Card[];
+		loading: boolean;
+	};
 }
 
 const initialState: StateInterface = {
@@ -29,6 +40,10 @@ const initialState: StateInterface = {
 		query: '',
 		results: [],
 		resultsCount: 0,
+		loading: false,
+	},
+	profile: {
+		ownedCards: [],
 		loading: false,
 	},
 };
@@ -67,6 +82,26 @@ const reducer = (state: StateInterface, action: ActionType) => {
 					...state.search,
 					results: action.results,
 					resultsCount: action.resultsCount,
+					loading: false,
+				},
+			};
+			break;
+		case 'START_UPDATE_PROFILE':
+			newState = {
+				...state,
+				profile: {
+					...state.profile,
+					ownedCards: [],
+					loading: true,
+				},
+			};
+			break;
+		case 'END_UPDATE_PROFILE':
+			newState = {
+				...state,
+				profile: {
+					...state.profile,
+					ownedCards: action.ownedCards,
 					loading: false,
 				},
 			};

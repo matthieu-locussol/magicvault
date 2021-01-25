@@ -1,5 +1,7 @@
+import React from 'react';
 import Link from 'next/link';
-import { AppBar, AppBarProps, Button, Toolbar } from '@material-ui/core';
+import { AppBar, AppBarProps, Button, Toolbar, CircularProgress, Typography } from '@material-ui/core';
+import { red } from '@material-ui/core/colors';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { signOut, useSession } from 'next-auth/client';
 import Logo from '@/components/Header/Logo';
@@ -19,6 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			maxWidth: theme.breakpoints.values.lg,
 		},
+		logout: {
+			color: red[400],
+		},
 	}),
 );
 
@@ -26,24 +31,34 @@ const Header = (props: AppBarProps) => {
 	const classes = useStyles();
 	const [session, loading] = useSession();
 
+	const Separator = () => (
+		<Typography display="inline" color="textPrimary" style={{ verticalAlign: 'middle' }}>
+			・
+		</Typography>
+	);
+
 	return (
 		<AppBar className={classes.root} position="relative" {...props}>
 			<Toolbar className={classes.toolbar}>
 				<Logo />
-				{!session && (
+				{loading && <CircularProgress size={24} />}
+				{!loading && !session && (
 					<Link href="/auth/signin" passHref>
-						<Button variant="contained" color="primary">
-							{loading ? '...' : 'Login'}
-						</Button>
+						<Button color="primary">Log in</Button>
 					</Link>
 				)}
-				{session && (
-					<Button
-						variant="contained"
-						color="primary"
-						onClick={() => signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/auth/signout` })}>
-						{loading ? '...' : `Logout (${session.user.email})`}
-					</Button>
+				{!loading && session && (
+					<React.Fragment>
+						<Link href="/owned" passHref>
+							<Button color="primary">Owned cards</Button>
+						</Link>
+						<Separator />
+						<Button
+							className={classes.logout}
+							onClick={() => signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/auth/signout` })}>
+							Log out
+						</Button>
+					</React.Fragment>
 				)}
 			</Toolbar>
 		</AppBar>
