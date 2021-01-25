@@ -45,6 +45,13 @@ const CardResults = () => {
 		'N°': (card: Card) => card.collector_number,
 		NAME: (card: Card) => card.name,
 		COST: (card: Card) => <ManaCost value={card.mana_cost} />,
+		TYPE: (card: Card) => card.type_line,
+		R: (card: Card) => card.rarity.charAt(0).toUpperCase(),
+		LA: (card: Card) => card.lang.toUpperCase(),
+		ARTIST: (card: Card) => card.artist,
+		USD: (card: Card) => `$${card.prices.usd}`,
+		EUR: (card: Card) => `€${card.prices.eur}`,
+		TIX: (card: Card) => card.prices.tix,
 	};
 
 	return (
