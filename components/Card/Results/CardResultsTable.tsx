@@ -17,7 +17,7 @@ const useStyles = makeStyles(() =>
 			},
 		},
 		cell: {
-			maxWidth: '160px',
+			maxWidth: '140px',
 			display: 'inline-block',
 			fontSize: '13px',
 			padding: '1px',
