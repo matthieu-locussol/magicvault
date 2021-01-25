@@ -147,9 +147,9 @@ const ManaCost = ({ value }: ManaCostProps) => {
 
 	return value ? (
 		<Typography variant="body1" className={classes.root}>
-			{(value.replaceAll('}', '} ').split(' ') as ManaCostType[]).map(
-				(fragment: ManaCostType) => mappings[fragment],
-			)}
+			{(value.replaceAll('}', '} ').split(' ') as ManaCostType[]).map((fragment, key) => (
+				<React.Fragment key={key}>{mappings[fragment]}</React.Fragment>
+			))}
 		</Typography>
 	) : null;
 };
