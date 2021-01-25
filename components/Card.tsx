@@ -1,5 +1,9 @@
-import { Card as MuiCard, CardProps } from '@material-ui/core';
+import { Card as MuiCard, CardProps as MuiCardProps } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
+interface StyleProps {
+	noPadding?: boolean;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -7,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			display: 'flex',
 			flexDirection: 'column',
-			padding: theme.spacing(4),
+			padding: (props: StyleProps) => (props.noPadding ? 0 : theme.spacing(4)),
 			boxShadow: `0 5px 10px 0 rgba(31, 51, 86, 0.06)`,
 			borderRadius: theme.spacing(1.5),
 			[theme.breakpoints.down('sm')]: {
@@ -18,8 +22,12 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-const Card = (props: CardProps) => {
-	const classes = useStyles();
+interface CardProps extends MuiCardProps {
+	noPadding?: boolean;
+}
+
+const Card = (props: CardProps & StyleProps) => {
+	const classes = useStyles(props);
 
 	return <MuiCard className={classes.root} {...props} />;
 };
