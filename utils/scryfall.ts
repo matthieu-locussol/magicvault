@@ -13,3 +13,9 @@ export const searchCards = (query: string, page: number) =>
 			page,
 		},
 	});
+
+// https://scryfall.com/docs/api/cards/collection
+export const getCards = async (identifiers: { id: string }[]) =>
+	scryfall.post('/cards/collection', {
+		identifiers,
+	});
