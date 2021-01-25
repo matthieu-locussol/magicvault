@@ -1,27 +1,34 @@
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
+import { Card } from '@/types/Card';
 
 type ActionType =
 	| {
 			type: 'START_SEARCH';
-			terms: string;
+			page: number;
+			query: string;
 	  }
 	| {
 			type: 'END_SEARCH';
-			results: any[] | undefined;
+			results: Card[] | undefined;
+			resultsCount: number;
 	  };
 
 interface StateInterface {
 	search: {
-		terms: string;
-		results: any[] | undefined;
+		page: number;
+		query: string;
+		results: Card[] | undefined;
+		resultsCount: number;
 		loading: boolean;
 	};
 }
 
 const initialState: StateInterface = {
 	search: {
-		terms: '',
+		page: 0,
+		query: '',
 		results: [],
+		resultsCount: 0,
 		loading: false,
 	},
 };
@@ -45,8 +52,10 @@ const reducer = (state: StateInterface, action: ActionType) => {
 				...state,
 				search: {
 					...state.search,
-					terms: action.terms,
+					page: action.page,
+					query: action.query,
 					results: [],
+					resultsCount: 0,
 					loading: true,
 				},
 			};
@@ -57,6 +66,7 @@ const reducer = (state: StateInterface, action: ActionType) => {
 				search: {
 					...state.search,
 					results: action.results,
+					resultsCount: action.resultsCount,
 					loading: false,
 				},
 			};
