@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles(() =>
 	createStyles({
@@ -19,10 +18,6 @@ const CardImage = ({ data }: CardImageProps) => {
 	const classes = useStyles();
 	const [imageUri, setImageUri] = useState('');
 
-	const CardImageSkeleton = () => (
-		<Skeleton variant="rect" animation="wave" width={244} height={340} className={classes.root} />
-	);
-
 	useEffect(() => {
 		if (data?.image_uris?.large) {
 			setImageUri(data.image_uris.large);
@@ -33,10 +28,16 @@ const CardImage = ({ data }: CardImageProps) => {
 	}, []);
 
 	return imageUri ? (
-		<Image alt="" width={244} height={340} className={classes.root} src={imageUri} layout="fixed" />
-	) : (
-		<CardImageSkeleton />
-	);
+		<Image
+			loading="eager"
+			alt=""
+			width={244}
+			height={340}
+			className={classes.root}
+			src={imageUri}
+			layout="fixed"
+		/>
+	) : null;
 };
 
 export default CardImage;
