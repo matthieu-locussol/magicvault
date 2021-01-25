@@ -1,7 +1,6 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import ManaCost from '@/components/Card/ManaCost';
-import { useStore } from '@/store';
 import { Card } from '@/types/Card';
 
 const useStyles = makeStyles(() =>
