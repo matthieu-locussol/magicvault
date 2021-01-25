@@ -1,5 +1,6 @@
 import { Card as MuiCard, CardProps as MuiCardProps } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { Omit } from '@material-ui/types';
 
 interface StyleProps {
 	noPadding?: boolean;
@@ -26,10 +27,11 @@ interface CardProps extends MuiCardProps {
 	noPadding?: boolean;
 }
 
-const Card = (props: CardProps & StyleProps) => {
+const Card = (props: CardProps & Omit<CardProps, keyof StyleProps>) => {
+	const { noPadding, ...other } = props;
 	const classes = useStyles(props);
 
-	return <MuiCard className={classes.root} {...props} />;
+	return <MuiCard className={classes.root} {...other} />;
 };
 
 export default Card;
