@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import Card from '@/components/Card';
 import Column from '@/components/Layout/Column';
 import Layout from '@/components/Layout/Layout';
-import CardResults from '@/components/Card/Results/CardResults';
 import { useSession } from 'next-auth/client';
 import { useStore } from '@/store';
 import { useUpdateProfile } from '@/hooks/useUpdateProfile';
+import CardOwned from '@/components/Card/Owned/CardOwned';
 
 const Owned = () => {
 	const [store] = useStore();
@@ -27,9 +27,8 @@ const Owned = () => {
 			</Column>
 			<Column type="right">
 				<Card noPadding>
-					<CardResults />
+					<CardOwned />
 				</Card>
-				{store.profile.loading ? '...' : JSON.stringify(store?.profile?.ownedCards.length)}
 			</Column>
 		</Layout>
 	);
