@@ -1,3 +1,4 @@
+import React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import ManaCost from '@/components/Card/ManaCost';

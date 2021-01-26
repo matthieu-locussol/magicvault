@@ -1,3 +1,4 @@
+import React from 'react';
 import { TablePagination, LabelDisplayedRowsArgs } from '@material-ui/core';
 import { useSearchCards } from '@/hooks/useSearchCards';
 

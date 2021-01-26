@@ -1,3 +1,4 @@
+import React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Paper, LinearProgress, Typography } from '@material-ui/core';
 import CardResultsTable from '@/components/Card/Results/CardResultsTable';

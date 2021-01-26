@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Information from '@/components/Footer/Information';
