@@ -13,7 +13,7 @@ const Owned = () => {
 	const updateProfile = useUpdateProfile();
 
 	useEffect(() => {
-		if (!loading) {
+		if (!loading && store.profile.ownedCards.length === 0) {
 			updateProfile();
 		}
 	}, [loading]);
