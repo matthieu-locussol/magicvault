@@ -55,7 +55,7 @@ const Header = (props: AppBarProps) => {
 						<Separator />
 						<Button
 							className={classes.logout}
-							onClick={() => signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/auth/signout` })}>
+							onClick={() => signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_URL}/auth/signout` })}>
 							Log out
 						</Button>
 					</React.Fragment>

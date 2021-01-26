@@ -12,7 +12,8 @@ import { providers, signIn, SessionProvider } from 'next-auth/client';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		button: {
-			minWidth: '400px',
+			width: '100%',
+			maxWidth: '400px',
 			marginLeft: 'auto',
 			marginRight: 'auto',
 			'&:not(:first-child)': {
@@ -55,7 +56,9 @@ const SignIn = ({ providers }: SignInProps) => {
 							variant="contained"
 							color="primary"
 							size="large"
-							onClick={() => signIn(provider?.id, { callbackUrl: process.env.NEXTAUTH_URL })}
+							onClick={() =>
+								signIn(provider?.id, { callbackUrl: `${process.env.NEXT_PUBLIC_URL}/owned` })
+							}
 							startIcon={buttonsIcons[idx]}
 							className={clsx(classes.button, buttonsClasses[idx])}>
 							Sign in with {provider?.name}
