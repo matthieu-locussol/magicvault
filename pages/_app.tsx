@@ -48,16 +48,16 @@ export default function MyApp(props: AppProps) {
 	Router.events.on('routeChangeError', () => NProgress.done());
 
 	return (
-		<AuthProvider session={pageProps.session}>
-			<StoreProvider>
-				<ThemeProvider theme={theme}>
+		<StoreProvider>
+			<ThemeProvider theme={theme}>
+				<AuthProvider session={pageProps.session}>
 					<Head>
 						<title>MagicVault ・ Organize your Magic collections!</title>
 					</Head>
 					<CssBaseline />
 					<Component {...pageProps} />
-				</ThemeProvider>
-			</StoreProvider>
-		</AuthProvider>
+				</AuthProvider>
+			</ThemeProvider>
+		</StoreProvider>
 	);
 }
