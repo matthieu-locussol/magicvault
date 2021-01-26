@@ -18,6 +18,10 @@ type ActionType =
 	| {
 			type: 'END_UPDATE_PROFILE';
 			ownedCards: Card[];
+	  }
+	| {
+			type: 'PAGINATE_OWNED';
+			newPage: number;
 	  };
 
 interface StateInterface {
@@ -30,6 +34,7 @@ interface StateInterface {
 	};
 	profile: {
 		ownedCards: Card[];
+		ownedPage: number;
 		loading: boolean;
 	};
 }
@@ -44,6 +49,7 @@ const initialState: StateInterface = {
 	},
 	profile: {
 		ownedCards: [],
+		ownedPage: 0,
 		loading: false,
 	},
 };
@@ -103,6 +109,15 @@ const reducer = (state: StateInterface, action: ActionType) => {
 					...state.profile,
 					ownedCards: action.ownedCards,
 					loading: false,
+				},
+			};
+			break;
+		case 'PAGINATE_OWNED':
+			newState = {
+				...state,
+				profile: {
+					...state.profile,
+					ownedPage: action.newPage,
 				},
 			};
 			break;
