@@ -4,7 +4,7 @@ import { searchCards } from '@/utils/scryfall';
 export const useSearchCards = () => {
 	const [store, dispatch] = useStore();
 
-	return async (query: string, page: number = 0) => {
+	return async (query: string, page = 0) => {
 		if (!store.search.loading && query.length > 0) {
 			try {
 				dispatch({ type: 'START_SEARCH', query, page });

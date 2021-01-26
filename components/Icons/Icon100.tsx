@@ -2,7 +2,7 @@ import { SVGProps } from 'react';
 
 const Icon = (props: SVGProps<SVGSVGElement>) => (
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 15" {...props}>
-		<g fill="none" fill-rule="evenodd">
+		<g fill="none" fillRule="evenodd">
 			<path
 				d="M20.553 0H7.447C3.334 0 0 3.358 0 7.5 0 11.642 3.334 15 7.447 15h13.106C24.666 15 28 11.642 28 7.5 28 3.358 24.666 0 20.553 0z"
 				fill="#CAC5C0"
