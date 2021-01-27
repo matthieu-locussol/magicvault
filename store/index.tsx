@@ -1,14 +1,15 @@
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
 import { Card } from '@/types/Card';
+import { CardIdentifier } from '@/utils/api';
 
 type ActionType =
 	| {
 			type: 'START_SEARCH';
-			page: number;
 			query: string;
 	  }
 	| {
 			type: 'END_SEARCH';
+			page: number;
 			results: Card[] | undefined;
 			resultsCount: number;
 	  }
@@ -18,10 +19,19 @@ type ActionType =
 	| {
 			type: 'END_UPDATE_PROFILE';
 			ownedCards: Card[];
+			ownedIdentifiers: CardIdentifier[];
 	  }
 	| {
 			type: 'PAGINATE_OWNED';
 			newPage: number;
+	  }
+	| {
+			type: 'START_UPDATE_OWNED';
+			card: Card;
+			amount: number;
+	  }
+	| {
+			type: 'END_UPDATE_OWNED';
 	  };
 
 interface StateInterface {
@@ -33,8 +43,13 @@ interface StateInterface {
 		loading: boolean;
 	};
 	profile: {
+		ownedIdentifiers: CardIdentifier[];
 		ownedCards: Card[];
 		ownedPage: number;
+		loading: boolean;
+	};
+	owned: {
+		updatingId: string | null;
 		loading: boolean;
 	};
 }
@@ -48,8 +63,13 @@ const initialState: StateInterface = {
 		loading: false,
 	},
 	profile: {
+		ownedIdentifiers: [],
 		ownedCards: [],
 		ownedPage: 0,
+		loading: false,
+	},
+	owned: {
+		updatingId: null,
 		loading: false,
 	},
 };
@@ -73,7 +93,7 @@ const reducer = (state: StateInterface, action: ActionType) => {
 				...state,
 				search: {
 					...state.search,
-					page: action.page,
+					page: 0,
 					query: action.query,
 					results: [],
 					resultsCount: 0,
@@ -86,6 +106,7 @@ const reducer = (state: StateInterface, action: ActionType) => {
 				...state,
 				search: {
 					...state.search,
+					page: action.page,
 					results: action.results,
 					resultsCount: action.resultsCount,
 					loading: false,
@@ -97,6 +118,7 @@ const reducer = (state: StateInterface, action: ActionType) => {
 				...state,
 				profile: {
 					...state.profile,
+					ownedIdentifiers: [],
 					ownedCards: [],
 					loading: true,
 				},
@@ -107,6 +129,7 @@ const reducer = (state: StateInterface, action: ActionType) => {
 				...state,
 				profile: {
 					...state.profile,
+					ownedIdentifiers: action.ownedIdentifiers,
 					ownedCards: action.ownedCards,
 					loading: false,
 				},
@@ -118,6 +141,49 @@ const reducer = (state: StateInterface, action: ActionType) => {
 				profile: {
 					...state.profile,
 					ownedPage: action.newPage,
+				},
+			};
+			break;
+		case 'START_UPDATE_OWNED':
+			let newOwnedCards = state.profile.ownedCards;
+			let newOwnedIdentifiers = state.profile.ownedIdentifiers;
+
+			const existingCardIndex = newOwnedCards.findIndex((c) => c.id === action.card.id);
+			const existingIdentifierIndex = newOwnedIdentifiers.findIndex((e) => e.id === action.card.id);
+
+			if (existingIdentifierIndex !== -1) {
+				if (action.amount > 0) {
+					newOwnedIdentifiers[existingIdentifierIndex].amount = action.amount;
+				} else {
+					newOwnedCards.splice(existingCardIndex, 1);
+					newOwnedIdentifiers.splice(existingIdentifierIndex, 1);
+				}
+			} else {
+				newOwnedCards.push(action.card);
+				newOwnedIdentifiers.push({ id: action.card.id, amount: action.amount });
+			}
+
+			newState = {
+				...state,
+				profile: {
+					...state.profile,
+					ownedCards: newOwnedCards,
+					ownedIdentifiers: newOwnedIdentifiers,
+				},
+				owned: {
+					...state.owned,
+					updatingId: action.card.id,
+					loading: true,
+				},
+			};
+			break;
+		case 'END_UPDATE_OWNED':
+			newState = {
+				...state,
+				owned: {
+					...state.owned,
+					updatingId: undefined,
+					loading: false,
 				},
 			};
 			break;
