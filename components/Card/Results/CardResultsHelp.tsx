@@ -48,10 +48,10 @@ const CardResultsHelp = () => {
 			</div>
 			<div className={classes.right}>
 				<SearchIcon className={classes.icon} />
-				<Typography variant="h5" gutterBottom>
+				<Typography align="center" variant="h5" gutterBottom>
 					Start by typing some keywords
 				</Typography>
-				<Typography variant="body1" color="textSecondary">
+				<Typography align="center" variant="body1" color="textSecondary">
 					Type at least one character that should be contained in a card name!
 				</Typography>
 			</div>
