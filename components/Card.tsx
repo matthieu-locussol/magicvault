@@ -30,7 +30,7 @@ interface CardProps extends MuiCardProps {
 
 const Card = (props: CardProps & Omit<CardProps, keyof StyleProps>) => {
 	const { noPadding, ...other } = props;
-	const classes = useStyles(props);
+	const classes = useStyles({ noPadding });
 
 	return <MuiCard className={classes.root} {...other} />;
 };
