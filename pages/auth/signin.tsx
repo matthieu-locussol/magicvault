@@ -43,7 +43,7 @@ interface SignInProps {
 
 const SignIn = ({ providers }: SignInProps) => {
 	const classes = useStyles();
-	const buttonsIcons = [<GoogleIcon />, <FacebookIcon />];
+	const buttonsIcons = [<GoogleIcon key="google" />, <FacebookIcon key="facebook" />];
 	const buttonsClasses = [classes.google, classes.facebook];
 
 	return (

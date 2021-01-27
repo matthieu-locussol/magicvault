@@ -145,8 +145,8 @@ const reducer = (state: StateInterface, action: ActionType) => {
 			};
 			break;
 		case 'START_UPDATE_OWNED':
-			let newOwnedCards = state.profile.ownedCards;
-			let newOwnedIdentifiers = state.profile.ownedIdentifiers;
+			const newOwnedCards = state.profile.ownedCards;
+			const newOwnedIdentifiers = state.profile.ownedIdentifiers;
 
 			const existingCardIndex = newOwnedCards.findIndex((c) => c.id === action.card.id);
 			const existingIdentifierIndex = newOwnedIdentifiers.findIndex((e) => e.id === action.card.id);
