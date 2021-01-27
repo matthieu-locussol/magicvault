@@ -12,10 +12,16 @@ const useStyles = makeStyles((theme: Theme) =>
 			alignItems: 'center',
 			padding: theme.spacing(4),
 			marginBottom: theme.spacing(12),
+			[theme.breakpoints.down('sm')]: {
+				justifyContent: 'center',
+			},
 		},
 		left: {
 			display: 'flex',
 			paddingLeft: theme.spacing(2),
+			[theme.breakpoints.down('sm')]: {
+				display: 'none',
+			},
 		},
 		right: {
 			display: 'flex',
