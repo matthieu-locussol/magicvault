@@ -18,7 +18,7 @@ export const useUpdateProfile = () => {
 				let responseOwnedsIdentifiers = await getOwnedIdentifiers(session.user.email);
 				let ownedIdentifiers = responseOwnedsIdentifiers.data.data;
 
-				if (!(ownedIdentifiers?.length > 0)) {
+				if (responseOwnedsIdentifiers.data.statusCode === 400) {
 					await createOwnedIdentifiers(session.user.email);
 
 					responseOwnedsIdentifiers = await getOwnedIdentifiers(session.user.email);
