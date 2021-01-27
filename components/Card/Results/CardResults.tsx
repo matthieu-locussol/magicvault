@@ -1,7 +1,9 @@
 import React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { Paper, LinearProgress, Typography } from '@material-ui/core';
+import { Paper, LinearProgress } from '@material-ui/core';
 import CardResultsTable, { CardColumn } from '@/components/Card/Results/CardResultsTable';
+import CardResultsHelp from '@/components/Card/Results/CardResultsHelp';
+import CardResultsNotFound from '@/components/Card/Results/CardResultsNotFound';
 import CardResultsPagination from '@/components/Card/Results/CardResultsPagination';
 import CardOwnedOptions from '@/components/Card/Owned/CardOwnedOptions';
 import ManaCost from '@/components/Card/ManaCost';
@@ -87,25 +89,23 @@ const CardResults = () => {
 
 	return (
 		<Paper className={classes.root}>
-			<Pagination />
 			{store.search.results && store.search.results.length > 0 ? (
-				<CardResultsTable
-					cards={store.search.results}
-					columns={columns}
-					caption={`Results for "${store.search.query}"`}
-				/>
+				<React.Fragment>
+					<Pagination />
+					<CardResultsTable
+						cards={store.search.results}
+						columns={columns}
+						caption={`Results for "${store.search.query}"`}
+					/>
+					<Pagination />
+				</React.Fragment>
 			) : store.search.loading ? (
 				<LinearProgress />
 			) : store.search.query.length > 0 ? (
-				<Typography variant="body1" align="center">
-					No results found for "{store.search.query}".
-				</Typography>
+				<CardResultsNotFound query={store.search.query} />
 			) : (
-				<Typography variant="body1" align="center">
-					You didn't enter anything to search for.
-				</Typography>
+				<CardResultsHelp />
 			)}
-			<Pagination />
 		</Paper>
 	);
 };

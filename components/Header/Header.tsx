@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { AppBar, AppBarProps, Button, Toolbar, CircularProgress, Typography } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
+import { AppBar, AppBarProps, Button, IconButton, Toolbar, CircularProgress } from '@material-ui/core';
+import { ExitToAppRounded as LogoutIcon } from '@material-ui/icons';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { signOut, useSession } from 'next-auth/client';
 import Logo from '@/components/Header/Logo';
@@ -21,21 +21,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			maxWidth: theme.breakpoints.values.lg,
 		},
-		logout: {
-			color: red[400],
-		},
 	}),
 );
 
 const Header = (props: AppBarProps) => {
 	const classes = useStyles();
 	const [session, loading] = useSession();
-
-	const Separator = () => (
-		<Typography display="inline" color="textPrimary" style={{ verticalAlign: 'middle' }}>
-			・
-		</Typography>
-	);
 
 	return (
 		<AppBar className={classes.root} position="relative" {...props}>
@@ -52,12 +43,11 @@ const Header = (props: AppBarProps) => {
 						<Link href="/owned" passHref>
 							<Button color="primary">Owned cards</Button>
 						</Link>
-						<Separator />
-						<Button
-							className={classes.logout}
+						<IconButton
+							color="primary"
 							onClick={() => signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_URL}/auth/signout` })}>
-							Log out
-						</Button>
+							<LogoutIcon />
+						</IconButton>
 					</React.Fragment>
 				)}
 			</Toolbar>

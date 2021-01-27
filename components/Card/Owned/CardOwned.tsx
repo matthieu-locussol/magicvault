@@ -1,9 +1,10 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Paper, LinearProgress, Typography } from '@material-ui/core';
+import { Paper, LinearProgress } from '@material-ui/core';
 import CardResultsTable, { CardColumn } from '@/components/Card/Results/CardResultsTable';
 import CardOwnedPagination from '@/components/Card/Owned/CardOwnedPagination';
 import CardOwnedOptions from '@/components/Card/Owned/CardOwnedOptions';
+import CardOwnedNone from '@/components/Card/Owned/CardOwnedNone';
 import ManaCost from '@/components/Card/ManaCost';
 import { Card } from '@/types/Card';
 import { useStore } from '@/store';
@@ -84,17 +85,21 @@ const CardOwned = () => {
 
 	return (
 		<Paper className={classes.root}>
-			<Pagination />
 			{store.profile.ownedCards && store.profile.ownedCards.length > 0 ? (
-				<CardResultsTable cards={ownedCardsSlice} columns={columns} caption="Owned cards collection" />
+				<React.Fragment>
+					<Pagination />
+					<CardResultsTable cards={ownedCardsSlice} columns={columns} caption="Owned cards collection" />
+					<Pagination />
+				</React.Fragment>
 			) : store.profile.loading ? (
-				<LinearProgress />
+				<React.Fragment>
+					<Pagination />
+					<LinearProgress />
+					<Pagination />
+				</React.Fragment>
 			) : (
-				<Typography variant="body1" align="center">
-					You don't have any owned cards yet.
-				</Typography>
+				<CardOwnedNone />
 			)}
-			<Pagination />
 		</Paper>
 	);
 };
