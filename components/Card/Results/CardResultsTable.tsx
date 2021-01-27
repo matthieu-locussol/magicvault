@@ -1,14 +1,19 @@
 import React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
-import ManaCost from '@/components/Card/ManaCost';
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableCellProps,
+	TableContainer,
+	TableHead,
+	TableRow,
+} from '@material-ui/core';
 import { Card } from '@/types/Card';
+import { useSession } from 'next-auth/client';
 
 const useStyles = makeStyles(() =>
 	createStyles({
-		root: {
-			width: '100%',
-		},
 		row: {
 			'&:nth-of-type(odd)': {
 				backgroundColor: '#ffffff',
@@ -29,47 +34,53 @@ const useStyles = makeStyles(() =>
 	}),
 );
 
-interface CardResultsTableProps {
-	cards: Card[];
+export interface CardColumn {
+	name: string;
+	align?: TableCellProps['align'];
+	authenticated?: boolean;
+	getter: (card: Card) => JSX.Element | number | string | null | undefined;
 }
 
-const CardResultsTable = ({ cards }: CardResultsTableProps) => {
-	const classes = useStyles();
+interface CardResultsTableProps {
+	cards: Card[];
+	columns: CardColumn[];
+	caption: string;
+}
 
-	const columns = {
-		SET: (card: Card) => card.set.toUpperCase(),
-		'N°': (card: Card) => card.collector_number,
-		NAME: (card: Card) => card.name,
-		COST: (card: Card) => <ManaCost value={card.mana_cost} />,
-		TYPE: (card: Card) => card.type_line.split(' — ')[0].replace('Legendary', 'Lgd.'),
-		R: (card: Card) => card.rarity.charAt(0).toUpperCase(),
-		LA: (card: Card) => card.lang.toUpperCase(),
-		ARTIST: (card: Card) => card.artist,
-		USD: (card: Card) => (card.prices.usd ? `$${card.prices.usd}` : ''),
-		EUR: (card: Card) => (card.prices.eur ? `€${card.prices.eur}` : ''),
-		TIX: (card: Card) => card.prices.tix,
-	};
+const CardResultsTable = ({ cards, columns, caption }: CardResultsTableProps) => {
+	const classes = useStyles();
+	const [session] = useSession();
+
+	const checkAuth = (needAuth: boolean | undefined, children: React.ReactNode) =>
+		(needAuth && session) || !needAuth ? children : null;
 
 	return (
 		<TableContainer>
 			<Table stickyHeader size="small" aria-label="sticky table">
+				{caption && <caption>{caption}</caption>}
 				<TableHead>
 					<TableRow>
-						{Object.keys(columns).map((column) => (
-							<TableCell key={column}>
-								<b>{column}</b>
-							</TableCell>
-						))}
+						{columns.map((column) =>
+							checkAuth(
+								column.authenticated,
+								<TableCell key={column.name} align={column.align}>
+									<b>{column.name}</b>
+								</TableCell>,
+							),
+						)}
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{cards.map((card: Card, idx: number) => (
 						<TableRow hover className={classes.row} key={idx}>
-							{Object.values(columns).map((getter, idc) => (
-								<TableCell key={`${idx}-${idc}`}>
-									<span className={classes.cell}>{getter(card)}</span>
-								</TableCell>
-							))}
+							{columns.map((column) =>
+								checkAuth(
+									column.authenticated,
+									<TableCell key={`${column.name}-${idx}`} align={column.align}>
+										<span className={classes.cell}>{column.getter(card)}</span>
+									</TableCell>,
+								),
+							)}
 						</TableRow>
 					))}
 				</TableBody>

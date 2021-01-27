@@ -9,22 +9,22 @@ interface CardResultsPaginationProps {
 	loading: boolean;
 }
 
+const CARDS_PER_PAGE = 175;
+
 const CardResultsPagination = ({ page, count, query, loading }: CardResultsPaginationProps) => {
 	const searchCards = useSearchCards();
 
 	const handleChangePage = (_: unknown, newPage: number) => searchCards(query, newPage);
 
 	const label = ({ from, to, count }: LabelDisplayedRowsArgs) =>
-		loading || query.length === 0
-			? ''
-			: `${from} - ${to} of ${count !== -1 ? `${count} cards` : `more than ${to}`}`;
+		loading || query.length === 0 ? '' : `${from} - ${to} of ${count} cards`;
 
 	return (
 		<TablePagination
-			rowsPerPageOptions={[175]}
+			rowsPerPageOptions={[CARDS_PER_PAGE]}
 			component="div"
 			count={count}
-			rowsPerPage={175}
+			rowsPerPage={CARDS_PER_PAGE}
 			page={page}
 			onChangePage={handleChangePage}
 			labelDisplayedRows={label}
