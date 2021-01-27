@@ -7,19 +7,20 @@ export const useSearchCards = () => {
 	return async (query: string, page = 0) => {
 		if (!store.search.loading && query.length > 0) {
 			try {
-				dispatch({ type: 'START_SEARCH', query, page });
-				const results = await searchCards(query, page);
+				dispatch({ type: 'START_SEARCH', query });
+				const results = await searchCards(query, page + 1);
 				if (results.status === 200) {
 					dispatch({
 						type: 'END_SEARCH',
+						page,
 						results: results.data.data,
 						resultsCount: results.data.total_cards,
 					});
 				} else {
-					dispatch({ type: 'END_SEARCH', results: [], resultsCount: 0 });
+					dispatch({ type: 'END_SEARCH', page: 0, results: [], resultsCount: 0 });
 				}
 			} catch (error) {
-				dispatch({ type: 'END_SEARCH', results: undefined, resultsCount: 0 });
+				dispatch({ type: 'END_SEARCH', page: 0, results: undefined, resultsCount: 0 });
 			}
 		}
 	};
