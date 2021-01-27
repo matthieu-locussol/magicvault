@@ -77,10 +77,10 @@ const initialState: StateInterface = {
 type StoreContextInterface = [StateInterface, Dispatch<ActionType>];
 
 interface StoreProviderInterface {
-	children: any;
+	children: React.ReactNode;
 }
 
-const StoreContext = createContext<StoreContextInterface>([initialState, () => {}]);
+const StoreContext = createContext<StoreContextInterface>([initialState, () => ({})]);
 
 export const useStore = () => useContext(StoreContext);
 
