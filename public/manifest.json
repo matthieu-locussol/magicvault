@@ -1,0 +1,28 @@
+{
+	"short_name": "MagicVault",
+	"name": "MagicVault ・ Organize your Magic collections!",
+	"description": "Modern and user-friendly Magic collection manager allowing you to sort your collection, list the cards you need and search for informations related to cards, sets and more!",
+	"icons": [
+		 {
+			"src": "/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		 },
+		 {
+			"src": "/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		 },
+		 {
+			 "src": "/maskable_icon.png",
+			 "sizes": "512x512",
+			 "type": "image/png",
+			 "purpose": "any maskable"
+		 }
+	],
+	"start_url": "/",
+	"scope": "/",
+	"background_color": "#f4f8fc",
+	"display": "standalone",
+	"theme_color": "#f4f8fc"
+ }
