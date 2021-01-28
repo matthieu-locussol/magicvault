@@ -20,6 +20,7 @@ export const searchCards = (query: string, page: number): Promise<AxiosResponse<
 		params: {
 			q: query,
 			page,
+			unique: 'prints',
 		},
 	});
 
