@@ -67,6 +67,7 @@ const SearchBar = (props: AppBarProps) => {
 			<Toolbar className={classes.toolbar}>
 				<form onSubmit={search} className={classes.form}>
 					<TextField
+						disabled={store.search.loading}
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
 						variant="outlined"
