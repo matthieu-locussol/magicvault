@@ -34,8 +34,8 @@ const Footer = () => {
 						Product
 					</Typography>
 					<Typography variant="body2" color="textSecondary" gutterBottom>
-						I would like to draw your attention to the fact that Kanjisho uses multiple sources of data
-						provided by third parties.
+						I would like to draw your attention to the fact that MagicVault uses multiple sources of
+						data provided by third parties.
 					</Typography>
 					<Typography variant="body2" color="textSecondary" gutterBottom>
 						The search results are provided by the{' '}
