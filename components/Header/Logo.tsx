@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			fontFamily: 'Metamorphous',
-			marginRight: 'auto',
+			marginRight: theme.spacing(2),
 			'&:hover': {
 				color: `${theme.palette.text.primary}CC`,
 				cursor: 'pointer',
