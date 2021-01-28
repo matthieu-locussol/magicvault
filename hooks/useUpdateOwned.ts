@@ -13,7 +13,7 @@ export const useUpdateOwned = () => {
 
 			if (session.user.email) {
 				await updateOwnedIdentifiers(session.user.email, store.profile.ownedIdentifiers);
-				dispatch({ type: 'END_UPDATE_OWNED' });
+				dispatch({ type: 'END_UPDATE_OWNED', card, amount });
 			}
 		}
 	};

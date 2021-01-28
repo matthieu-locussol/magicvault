@@ -35,6 +35,8 @@ type ActionType =
 	  }
 	| {
 			type: 'END_UPDATE_OWNED';
+			card: Card;
+			amount: number;
 	  };
 
 interface StateInterface {
@@ -160,43 +162,46 @@ const reducer = (state: StateInterface, action: ActionType) => {
 			};
 			break;
 		case 'START_UPDATE_OWNED':
-			const newOwnedCards = state.profile.ownedCards;
 			const newOwnedIdentifiers = state.profile.ownedIdentifiers;
-
-			const existingCardIndex = newOwnedCards.findIndex((c) => c.id === action.card.id);
 			const existingIdentifierIndex = newOwnedIdentifiers.findIndex((e) => e.id === action.card.id);
 
 			if (existingIdentifierIndex !== -1) {
 				if (action.amount > 0) {
 					newOwnedIdentifiers[existingIdentifierIndex].amount = action.amount;
 				} else {
-					newOwnedCards.splice(existingCardIndex, 1);
 					newOwnedIdentifiers.splice(existingIdentifierIndex, 1);
 				}
 			} else {
-				newOwnedCards.push(action.card);
 				newOwnedIdentifiers.push({ id: action.card.id, amount: action.amount });
 			}
 
 			newState = {
 				...state,
-				profile: {
-					...state.profile,
-					ownedCards: newOwnedCards,
-					ownedIdentifiers: newOwnedIdentifiers,
-				},
 				owned: {
 					...state.owned,
+					ownedIdentifiers: newOwnedIdentifiers,
 					updatingId: action.card.id,
 					loading: true,
 				},
 			};
 			break;
 		case 'END_UPDATE_OWNED':
+			const newOwnedCards = state.profile.ownedCards;
+			const existingCardIndex = newOwnedCards.findIndex((c) => c.id === action.card.id);
+
+			if (existingCardIndex !== -1) {
+				if (action.amount <= 0) {
+					newOwnedCards.splice(existingCardIndex, 1);
+				}
+			} else {
+				newOwnedCards.push(action.card);
+			}
+
 			newState = {
 				...state,
 				owned: {
 					...state.owned,
+					ownedCards: newOwnedCards,
 					updatingId: undefined,
 					loading: false,
 				},
