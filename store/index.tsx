@@ -14,6 +14,9 @@ type ActionType =
 			resultsCount: number;
 	  }
 	| {
+			type: 'RESET_SEARCH';
+	  }
+	| {
 			type: 'START_UPDATE_PROFILE';
 	  }
 	| {
@@ -110,6 +113,18 @@ const reducer = (state: StateInterface, action: ActionType) => {
 					results: action.results,
 					resultsCount: action.resultsCount,
 					loading: false,
+				},
+			};
+			break;
+		case 'RESET_SEARCH':
+			newState = {
+				...state,
+				search: {
+					...state.search,
+					page: 0,
+					query: '',
+					results: [],
+					resultsCount: 0,
 				},
 			};
 			break;

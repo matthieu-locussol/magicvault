@@ -1,7 +1,8 @@
 import React from 'react';
-import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Link from '@/components/Link';
+import { useResetSearch } from '@/hooks/useResetSearch';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -10,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			marginRight: 'auto',
 			'&:hover': {
 				color: `${theme.palette.text.primary}CC`,
+				cursor: 'pointer',
 				textDecoration: 'none',
 			},
 		},
@@ -17,14 +19,19 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Logo = () => {
+	const router = useRouter();
 	const classes = useStyles();
+	const resetSearch = useResetSearch();
+
+	const reset = async () => {
+		await resetSearch();
+		router.push('/search');
+	};
 
 	return (
-		<NextLink href="/" passHref>
-			<Link color="textPrimary" variant="h5" className={classes.root}>
-				<b>M</b>agic<b>V</b>ault
-			</Link>
-		</NextLink>
+		<Link color="textPrimary" variant="h5" className={classes.root} onClick={reset}>
+			<b>M</b>agic<b>V</b>ault
+		</Link>
 	);
 };
 
