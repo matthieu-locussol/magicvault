@@ -47,6 +47,7 @@ const CardResults = () => {
 		{
 			name: 'NAME',
 			getter: (card: Card) => card.name,
+			tooltip: true,
 		},
 		{
 			name: 'COST',
@@ -55,6 +56,7 @@ const CardResults = () => {
 		{
 			name: 'TYPE',
 			getter: (card: Card) => card.type_line.split(' — ')[0].replace('Legendary', 'Lgd.'),
+			tooltip: true,
 		},
 		{
 			name: 'R',

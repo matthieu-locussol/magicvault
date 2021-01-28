@@ -38,6 +38,7 @@ export interface CardColumn {
 	name: string;
 	align?: TableCellProps['align'];
 	authenticated?: boolean;
+	tooltip?: boolean;
 	getter: (card: Card) => JSX.Element | number | string | null | undefined;
 }
 
@@ -76,7 +77,10 @@ const CardResultsTable = ({ cards, columns, caption }: CardResultsTableProps) =>
 							{columns.map((column) =>
 								checkAuth(
 									column.authenticated,
-									<TableCell key={`${column.name}-${idx}`} align={column.align}>
+									<TableCell
+										key={`${column.name}-${idx}`}
+										align={column.align}
+										title={column.tooltip ? (column.getter(card) as string) : undefined}>
 										<span className={classes.cell}>{column.getter(card)}</span>
 									</TableCell>,
 								),
