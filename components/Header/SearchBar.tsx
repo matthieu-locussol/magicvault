@@ -1,9 +1,9 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 import { AppBar, AppBarProps, Toolbar, TextField, InputAdornment, Button } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Search as SearchIcon } from '@material-ui/icons';
-import { useSearchCards } from '@/hooks/useSearchCards';
 import { useStore } from '@/store';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -37,15 +37,30 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const SearchBar = (props: AppBarProps) => {
+	const router = useRouter();
 	const classes = useStyles();
 	const [store] = useStore();
 	const [query, setQuery] = useState('');
-	const searchCards = useSearchCards();
 
 	const search = (e?: FormEvent<HTMLFormElement>) => {
 		e?.preventDefault();
-		searchCards(query);
+
+		router.push({
+			pathname: '/search',
+			query: {
+				q: query,
+			},
+		});
 	};
+
+	useEffect(() => {
+		const { q } = router.query;
+		const query = Array.isArray(q) ? q.join('') : q;
+
+		if (query) {
+			setQuery(query);
+		}
+	}, [router.query]);
 
 	return (
 		<AppBar className={classes.root} position="relative" {...props}>
