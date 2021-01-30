@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, AppBarProps, Toolbar } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Logo from '@/components/Header/Logo';
-import MenuDesktop from '@/components/Header/Menu/MenuDesktop';
+import Menu from '@/components/Header/Menu/Menu';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -20,12 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			maxWidth: theme.breakpoints.values.lg,
 		},
-		logout: {
-			marginLeft: 'auto',
-		},
-		button: {
-			marginLeft: theme.spacing(2),
-		},
 	}),
 );
 
@@ -36,7 +30,7 @@ const Header = (props: AppBarProps) => {
 		<AppBar className={classes.root} position="relative" {...props}>
 			<Toolbar className={classes.toolbar}>
 				<Logo />
-				<MenuDesktop />
+				<Menu />
 			</Toolbar>
 		</AppBar>
 	);
