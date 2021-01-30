@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			alignItems: 'center',
 			marginTop: theme.spacing(20),
 			marginLeft: theme.spacing(4),
+			[theme.breakpoints.down('sm')]: {
+				marginLeft: 0,
+			},
 		},
 		icon: {
 			fontSize: 72,
