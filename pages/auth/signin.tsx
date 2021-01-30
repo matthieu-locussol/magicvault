@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
+import { useRouter } from 'next/router';
 import { Button } from '@material-ui/core';
 import { YouTube as GoogleIcon, Facebook as FacebookIcon } from '@material-ui/icons';
 import { red, blue } from '@material-ui/core/colors';
@@ -7,7 +8,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@/components/Card';
 import Column from '@/components/Layout/Column';
 import Layout from '@/components/Layout/Layout';
-import { providers, signIn, SessionProvider } from 'next-auth/client';
+import { providers, signIn, SessionProvider, useSession } from 'next-auth/client';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -42,9 +43,20 @@ interface SignInProps {
 }
 
 const SignIn = ({ providers }: SignInProps) => {
+	const router = useRouter();
 	const classes = useStyles();
+	const [session, loading] = useSession();
 	const buttonsIcons = [<GoogleIcon key="google" />, <FacebookIcon key="facebook" />];
 	const buttonsClasses = [classes.google, classes.facebook];
+
+	if (loading) {
+		return null;
+	}
+
+	if (!loading && session) {
+		router.push('/');
+		return null;
+	}
 
 	return (
 		<Layout hideFooter>

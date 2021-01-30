@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Card from '@/components/Card';
 import Column from '@/components/Layout/Column';
 import Layout from '@/components/Layout/Layout';
@@ -8,8 +9,9 @@ import { useUpdateProfile } from '@/hooks/useUpdateProfile';
 import CardOwned from '@/components/Card/Owned/CardOwned';
 
 const Owned = () => {
+	const router = useRouter();
 	const [store] = useStore();
-	const [, loading] = useSession();
+	const [session, loading] = useSession();
 	const updateProfile = useUpdateProfile();
 
 	useEffect(() => {
@@ -17,6 +19,15 @@ const Owned = () => {
 			updateProfile();
 		}
 	}, [loading]);
+
+	if (loading) {
+		return null;
+	}
+
+	if (!loading && !session) {
+		router.push('/');
+		return null;
+	}
 
 	return (
 		<Layout>
