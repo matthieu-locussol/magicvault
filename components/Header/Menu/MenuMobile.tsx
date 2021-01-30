@@ -120,7 +120,7 @@ const MenuMobile = ({ links }: MenuMobileProps) => {
 					{links.map((link) => (
 						<React.Fragment key={link.title}>
 							<Link href={link.href} passHref>
-								<ListItem button className={classes.item}>
+								<ListItem button className={classes.item} onClick={handleClose}>
 									<ListItemIcon
 										classes={{ root: isActive(link.href) ? classes.iconActive : '' }}
 										className={classes.icon}>
