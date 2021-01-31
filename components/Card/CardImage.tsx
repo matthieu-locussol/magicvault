@@ -30,7 +30,7 @@ const CardImage = ({ card }: CardImageProps) => {
 
 	return imageUri ? (
 		<Image
-			loading="eager"
+			loading="lazy"
 			alt=""
 			width={244}
 			height={340}

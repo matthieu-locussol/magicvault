@@ -5,6 +5,7 @@ import CardResultsTable, { CardColumn } from '@/components/Card/Results/CardResu
 import CardOwnedPagination from '@/components/Card/Owned/CardOwnedPagination';
 import CardOwnedOptions from '@/components/Card/Owned/CardOwnedOptions';
 import CardOwnedNone from '@/components/Card/Owned/CardOwnedNone';
+import CardImageIcon from '@/components/Card/CardImageIcon';
 import ManaCost from '@/components/Card/ManaCost';
 import { Card } from '@/types/Card';
 import { useStore } from '@/store';
@@ -27,6 +28,11 @@ const CardOwned = () => {
 	const [store] = useStore();
 
 	const columns: CardColumn[] = [
+		{
+			name: 'IMAGE',
+			align: 'center',
+			getter: (card: Card) => <CardImageIcon card={card} />,
+		},
 		{
 			name: 'OWNED',
 			align: 'center',

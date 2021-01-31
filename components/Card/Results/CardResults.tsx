@@ -6,6 +6,7 @@ import CardResultsHelp from '@/components/Card/Results/CardResultsHelp';
 import CardResultsNotFound from '@/components/Card/Results/CardResultsNotFound';
 import CardResultsPagination from '@/components/Card/Results/CardResultsPagination';
 import CardOwnedOptions from '@/components/Card/Owned/CardOwnedOptions';
+import CardImageIcon from '@/components/Card/CardImageIcon';
 import ManaCost from '@/components/Card/ManaCost';
 import { Card } from '@/types/Card';
 import { useStore } from '@/store';
@@ -23,6 +24,11 @@ const CardResults = () => {
 	const [store] = useStore();
 
 	const columns: CardColumn[] = [
+		{
+			name: 'IMAGE',
+			align: 'center',
+			getter: (card: Card) => <CardImageIcon card={card} />,
+		},
 		{
 			name: 'OWNED',
 			align: 'center',
