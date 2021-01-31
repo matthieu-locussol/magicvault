@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Typography, Tooltip, CircularProgress } from '@material-ui/core';
+import { Tooltip, CircularProgress } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useStore } from '@/store';
 
@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme: Theme) =>
 			'& > *:not(:first-child)': {
 				marginLeft: theme.spacing(0.5),
 			},
-		},
-		set: {
-			marginBottom: theme.spacing(-0.3),
 		},
 	}),
 );
@@ -34,20 +31,13 @@ const IconSet = ({ code }: IconSetProps) => {
 
 	return (
 		<Tooltip arrow title={`${setName} (${code.toUpperCase()})`} placement="top">
-			<Typography variant="body1" className={classes.root}>
+			<div className={classes.root}>
 				{setImage ? (
-					<Image
-						loading="eager"
-						src={setImage}
-						alt={setName}
-						width={20}
-						height={20}
-						className={classes.set}
-					/>
+					<Image loading="eager" src={setImage} alt={setName} width={20} height={20} />
 				) : (
 					<CircularProgress size={7.8} />
 				)}
-			</Typography>
+			</div>
 		</Tooltip>
 	);
 };
