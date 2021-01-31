@@ -1,5 +1,6 @@
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
 import { Card } from '@/types/Card';
+import { Set } from '@/types/Set';
 import { CardIdentifier } from '@/utils/api';
 
 type ActionType =
@@ -37,6 +38,10 @@ type ActionType =
 			type: 'END_UPDATE_OWNED';
 			card: Card;
 			amount: number;
+	  }
+	| {
+			type: 'CACHE_SETS';
+			sets: Set[];
 	  };
 
 interface StateInterface {
@@ -57,6 +62,9 @@ interface StateInterface {
 		updatingId: string | null;
 		loading: boolean;
 	};
+	scryfall: {
+		sets: Set[];
+	};
 }
 
 const initialState: StateInterface = {
@@ -76,6 +84,9 @@ const initialState: StateInterface = {
 	owned: {
 		updatingId: null,
 		loading: false,
+	},
+	scryfall: {
+		sets: [],
 	},
 };
 
@@ -204,6 +215,15 @@ const reducer = (state: StateInterface, action: ActionType) => {
 					ownedCards: newOwnedCards,
 					updatingId: undefined,
 					loading: false,
+				},
+			};
+			break;
+		case 'CACHE_SETS':
+			newState = {
+				...state,
+				scryfall: {
+					...state.scryfall,
+					sets: action.sets,
 				},
 			};
 			break;

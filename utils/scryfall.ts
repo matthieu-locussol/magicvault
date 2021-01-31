@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Card } from '@/types/Card';
+import { Set } from '@/types/Set';
 
 // https://scryfall.com/docs/api
 export const scryfall = axios.create({
@@ -37,3 +38,12 @@ export const getCards = async (identifiers: { id: string }[]): Promise<AxiosResp
 	scryfall.post('/cards/collection', {
 		identifiers,
 	});
+
+type GetSetsResponse = {
+	object: 'list';
+	has_more: boolean;
+	data: Set[];
+};
+
+// https://scryfall.com/docs/api/sets
+export const getSets = async (): Promise<AxiosResponse<GetSetsResponse>> => scryfall.get('/sets');
