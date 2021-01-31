@@ -17,11 +17,17 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		button: {
 			marginLeft: theme.spacing(2),
+			'&:hover': {
+				cursor: 'auto',
+				background: 'none',
+			},
 		},
 		label: {
+			height: '100%',
 			color: theme.palette.text.secondary,
 			'&:hover': {
 				color: theme.palette.text.primary,
+				cursor: 'pointer',
 			},
 		},
 		active: {
@@ -46,6 +52,7 @@ const MenuDesktop = ({ links }: MenuDesktopProps) => {
 			{links.map((link) => (
 				<Link href={link.href} key={link.title} passHref>
 					<Button
+						disableRipple
 						color="primary"
 						classes={{
 							label: isActive(link.href) ? clsx(classes.label, classes.active) : classes.label,
