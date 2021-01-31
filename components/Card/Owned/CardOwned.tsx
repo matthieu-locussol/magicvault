@@ -53,12 +53,9 @@ const CardOwned = () => {
 			getter: (card: Card) => <IconSet code={card.set} />,
 		},
 		{
-			name: 'N°',
-			getter: (card: Card) => card.collector_number,
-		},
-		{
 			name: 'NAME',
 			getter: (card: Card) => card.name,
+			tooltip: true,
 		},
 		{
 			name: 'COST',
