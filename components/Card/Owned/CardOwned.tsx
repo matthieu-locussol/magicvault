@@ -7,6 +7,7 @@ import CardOwnedOptions from '@/components/Card/Owned/CardOwnedOptions';
 import CardOwnedNone from '@/components/Card/Owned/CardOwnedNone';
 import CardImageIcon from '@/components/Card/CardImageIcon';
 import ManaCost from '@/components/Card/ManaCost';
+import IconSet from '@/components/Icons/IconSet';
 import { Card } from '@/types/Card';
 import { useStore } from '@/store';
 
@@ -48,7 +49,8 @@ const CardOwned = () => {
 		},
 		{
 			name: 'SET',
-			getter: (card: Card) => card.set.toUpperCase(),
+			align: 'center',
+			getter: (card: Card) => <IconSet code={card.set} />,
 		},
 		{
 			name: 'N°',

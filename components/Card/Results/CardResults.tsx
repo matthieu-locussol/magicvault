@@ -8,6 +8,7 @@ import CardResultsPagination from '@/components/Card/Results/CardResultsPaginati
 import CardOwnedOptions from '@/components/Card/Owned/CardOwnedOptions';
 import CardImageIcon from '@/components/Card/CardImageIcon';
 import ManaCost from '@/components/Card/ManaCost';
+import IconSet from '@/components/Icons/IconSet';
 import { Card } from '@/types/Card';
 import { useStore } from '@/store';
 
@@ -44,7 +45,8 @@ const CardResults = () => {
 		},
 		{
 			name: 'SET',
-			getter: (card: Card) => card.set.toUpperCase(),
+			align: 'center',
+			getter: (card: Card) => <IconSet code={card.set} />,
 		},
 		{
 			name: 'N°',

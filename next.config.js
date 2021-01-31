@@ -1,6 +1,6 @@
 module.exports = {
 	images: {
-		domains: ['c1.scryfall.com'],
+		domains: ['c1.scryfall.com', 'c2.scryfall.com'],
 	},
 	async redirects() {
 		return [

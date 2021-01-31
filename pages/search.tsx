@@ -5,12 +5,18 @@ import Column from '@/components/Layout/Column';
 import Layout from '@/components/Layout/Layout';
 import CardResults from '@/components/Card/Results/CardResults';
 import { useSearchCards } from '@/hooks/useSearchCards';
+import { useCacheScryfallSets } from '@/hooks/useCacheScryfallSets';
 import { useStore } from '@/store';
 
 const Search = () => {
 	const router = useRouter();
+	const cacheScryfallSets = useCacheScryfallSets();
 	const searchCards = useSearchCards();
 	const [store] = useStore();
+
+	useEffect(() => {
+		cacheScryfallSets();
+	}, []);
 
 	useEffect(() => {
 		const { q } = router.query;
