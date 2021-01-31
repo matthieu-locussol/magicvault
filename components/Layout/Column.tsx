@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			maxWidth: '388px',
 			marginRight: theme.spacing(4),
+			'& > *:not(:first-child)': {
+				marginTop: theme.spacing(4),
+			},
 			[theme.breakpoints.down('sm')]: {
 				maxWidth: '100%',
 				marginRight: 0,
