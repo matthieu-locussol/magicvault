@@ -11,6 +11,7 @@ export type CardIdentifier = {
 
 type OwnedIdentifiersResponse = {
 	statusCode: number;
+	collectionId: number;
 	data: CardIdentifier[];
 };
 
@@ -46,4 +47,17 @@ export const createOwnedIdentifiers = async (
 	api.post('', {
 		type: 'createOwnedIdentifiers',
 		email,
+	});
+
+type GetUserCollectionProps = {
+	statusCode: number;
+	data: CardIdentifier[];
+};
+
+export const getUserCollection = async (
+	collectionId: string,
+): Promise<AxiosResponse<GetUserCollectionProps>> =>
+	api.post('', {
+		type: 'userCollection',
+		collectionId,
 	});
