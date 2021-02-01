@@ -26,6 +26,13 @@ const useStyles = makeStyles((theme: Theme) =>
 				flexDirection: 'column',
 			},
 		},
+		title: {
+			width: '100%',
+			maxWidth: theme.breakpoints.values.lg,
+			paddingLeft: theme.spacing(3),
+			paddingRight: theme.spacing(3),
+			marginTop: theme.spacing(4),
+		},
 	}),
 );
 
@@ -34,15 +41,17 @@ interface LayoutProps {
 	hideSearch?: boolean;
 	hideFooter?: boolean;
 	children: React.ReactNode;
+	title?: React.ReactNode;
 }
 
-const Layout = ({ hideHeader, hideSearch, hideFooter, children }: LayoutProps) => {
+const Layout = ({ hideHeader, hideSearch, hideFooter, children, title }: LayoutProps) => {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.root}>
 			{!hideHeader && <Header />}
 			{!hideSearch && <SearchBar />}
+			{title && <div className={classes.title}>{title}</div>}
 			<div className={classes.layout}>{children}</div>
 			{!hideFooter && <Footer />}
 		</div>
