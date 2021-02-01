@@ -54,7 +54,7 @@ const CardOwned = () => {
 		},
 		{
 			name: 'NAME',
-			getter: (card: Card) => card.name,
+			getter: (card: Card) => (card.printed_name ? card.printed_name : card.name),
 			tooltip: true,
 		},
 		{
@@ -93,7 +93,7 @@ const CardOwned = () => {
 			{store.profile.ownedCards && store.profile.ownedCards.length > 0 ? (
 				<React.Fragment>
 					<Pagination />
-					<CardResultsTable cards={ownedCardsSlice} columns={columns} caption="Owned cards collection" />
+					<CardResultsTable cards={ownedCardsSlice} columns={columns} caption="My cards collection" />
 					<Pagination />
 				</React.Fragment>
 			) : store.profile.loading ? (

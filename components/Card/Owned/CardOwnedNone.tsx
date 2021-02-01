@@ -16,7 +16,7 @@ const CardOwnedNone = () => {
 	return (
 		<div className={classes.root}>
 			<Typography align="center" variant="h5" gutterBottom>
-				No cards in your collection
+				No cards in this collection
 			</Typography>
 			<Typography align="center" variant="body1" color="textSecondary">
 				Search for your cards and add them to your collection!

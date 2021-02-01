@@ -19,14 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface CardOwnedLinkProps {
-	collectionId: string;
+	collectionId: number;
 }
 
 const CardOwnedLink = ({ collectionId }: CardOwnedLinkProps) => {
 	const classes = useStyles();
 	const [copied, setCopied] = useState(false);
 
-	const collectionUrl = `${process.env.NEXT_PUBLIC_URL}/collections/${collectionId}`;
+	const collectionUrl = `${process.env.NEXT_PUBLIC_URL}/collection/${collectionId}`;
 
 	const copyUrl = () => {
 		copy(collectionUrl);

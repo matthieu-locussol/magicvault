@@ -50,7 +50,7 @@ const CardResults = () => {
 		},
 		{
 			name: 'NAME',
-			getter: (card: Card) => card.name,
+			getter: (card: Card) => (card.printed_name ? card.printed_name : card.name),
 			tooltip: true,
 		},
 		{
