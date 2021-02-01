@@ -6,12 +6,15 @@ interface CardOwnedPaginationProps {
 	page: number;
 	count: number;
 	loading: boolean;
+	onChangePage?: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
 }
 
-const CardOwnedPagination = ({ page, count, loading }: CardOwnedPaginationProps) => {
+const CardOwnedPagination = ({ page, count, loading, onChangePage }: CardOwnedPaginationProps) => {
 	const paginateOwned = usePaginateOwned();
 
-	const handleChangePage = (_: unknown, newPage: number) => paginateOwned(newPage);
+	const handleChangePage = onChangePage
+		? onChangePage
+		: (_: unknown, newPage: number) => paginateOwned(newPage);
 
 	const label = ({ from, to, count }: LabelDisplayedRowsArgs) =>
 		loading ? '' : `${from} - ${to} of ${count !== -1 ? `${count} cards` : `more than ${to}`}`;
