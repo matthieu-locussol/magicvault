@@ -98,7 +98,7 @@ const MenuMobile = ({ links }: MenuMobileProps) => {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
-	const isActive = (href: string) => router.asPath.startsWith(href);
+	const isActive = (href: string) => router.asPath.endsWith(href);
 
 	return (
 		<React.Fragment>

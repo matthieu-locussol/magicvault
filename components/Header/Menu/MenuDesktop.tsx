@@ -45,7 +45,7 @@ const MenuDesktop = ({ links }: MenuDesktopProps) => {
 	const router = useRouter();
 	const classes = useStyles();
 
-	const isActive = (href: string) => router.asPath.startsWith(href);
+	const isActive = (href: string) => router.asPath.endsWith(href);
 
 	return (
 		<React.Fragment>
