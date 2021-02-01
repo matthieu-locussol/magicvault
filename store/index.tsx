@@ -24,6 +24,7 @@ type ActionType =
 			type: 'END_UPDATE_PROFILE';
 			ownedCards: Card[];
 			ownedIdentifiers: CardIdentifier[];
+			collectionId: number;
 	  }
 	| {
 			type: 'PAGINATE_OWNED';
@@ -53,6 +54,7 @@ interface StateInterface {
 		loading: boolean;
 	};
 	profile: {
+		ownedCollectionId: number | undefined;
 		ownedIdentifiers: CardIdentifier[];
 		ownedCards: Card[];
 		ownedPage: number;
@@ -76,6 +78,7 @@ const initialState: StateInterface = {
 		loading: false,
 	},
 	profile: {
+		ownedCollectionId: undefined,
 		ownedIdentifiers: [],
 		ownedCards: [],
 		ownedPage: 0,
@@ -157,6 +160,7 @@ const reducer = (state: StateInterface, action: ActionType) => {
 				...state,
 				profile: {
 					...state.profile,
+					ownedCollectionId: action.collectionId,
 					ownedIdentifiers: action.ownedIdentifiers,
 					ownedCards: action.ownedCards,
 					loading: false,

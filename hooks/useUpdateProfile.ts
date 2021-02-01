@@ -17,6 +17,7 @@ export const useUpdateProfile = () => {
 			if (session.user.email) {
 				let responseOwnedsIdentifiers = await getOwnedIdentifiers(session.user.email);
 				let ownedIdentifiers = responseOwnedsIdentifiers.data.data;
+				const collectionId = responseOwnedsIdentifiers.data.collectionId;
 
 				if (responseOwnedsIdentifiers.data.statusCode === 400) {
 					await createOwnedIdentifiers(session.user.email);
@@ -36,7 +37,7 @@ export const useUpdateProfile = () => {
 					ownedCards = [...ownedCards, ...responseOwnedCards.data.data];
 				}
 
-				dispatch({ type: 'END_UPDATE_PROFILE', ownedCards, ownedIdentifiers });
+				dispatch({ type: 'END_UPDATE_PROFILE', ownedCards, ownedIdentifiers, collectionId });
 			}
 		}
 	};
