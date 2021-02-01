@@ -33,7 +33,7 @@ const Menu = () => {
 
 	const links: MenuLink[] = [
 		{
-			href: '/owned',
+			href: '/collection',
 			title: 'My collection',
 			icon: <CollectionIcon />,
 		},

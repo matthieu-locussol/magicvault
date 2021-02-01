@@ -69,7 +69,7 @@ const SignIn = ({ providers }: SignInProps) => {
 							color="primary"
 							size="large"
 							onClick={() =>
-								signIn(provider?.id, { callbackUrl: `${process.env.NEXT_PUBLIC_URL}/owned` })
+								signIn(provider?.id, { callbackUrl: `${process.env.NEXT_PUBLIC_URL}/collection` })
 							}
 							startIcon={buttonsIcons[idx]}
 							className={clsx(classes.button, buttonsClasses[idx])}>

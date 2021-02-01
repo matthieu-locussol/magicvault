@@ -9,13 +9,17 @@ import { useUpdateProfile } from '@/hooks/useUpdateProfile';
 import { useCacheScryfallSets } from '@/hooks/useCacheScryfallSets';
 import CardOwned from '@/components/Card/Owned/CardOwned';
 import CardOwnedLink from '@/components/Card/Owned/CardOwnedLink';
+import { computeCollectionValue } from '@/utils/utils';
+import Title from '@/components/Page/Title';
 
-const Owned = () => {
+const Collection = () => {
 	const router = useRouter();
 	const [store] = useStore();
 	const [session, loading] = useSession();
 	const updateProfile = useUpdateProfile();
 	const cacheScryfallSets = useCacheScryfallSets();
+
+	const prices = computeCollectionValue(store.profile.ownedCards, store.profile.ownedIdentifiers);
 
 	useEffect(() => {
 		cacheScryfallSets();
@@ -37,12 +41,16 @@ const Owned = () => {
 	}
 
 	return (
-		<Layout>
+		<Layout
+			title={<Title title="My collection" count={store.profile.ownedCards.length} price={prices.usd} />}>
 			<Column type="left">
 				<Card>
 					<h1>Filters</h1>
+					<p>Work in progress.</p>
 				</Card>
-				<CardOwnedLink collectionId="288886754996388357" />
+				{store.profile.ownedCollectionId && (
+					<CardOwnedLink collectionId={store.profile.ownedCollectionId} />
+				)}
 			</Column>
 			<Column type="right">
 				<Card noPadding>
@@ -53,4 +61,4 @@ const Owned = () => {
 	);
 };
 
-export default Owned;
+export default Collection;
