@@ -54,13 +54,13 @@ const UserCollection = () => {
 	return (
 		<Layout
 			title={<Title title={`Collection n°${collectionId}`} count={cards.length} price={prices.usd} />}>
-			<Column type="left">
+			{/* <Column type="left">
 				<Card>
 					<h1>Filters</h1>
 					<p>Work in progress.</p>
 				</Card>
-			</Column>
-			<Column type="right">
+			</Column> */}
+			<Column type="full">
 				<Card noPadding>
 					<CardUserCollection
 						collectionId={collectionId}

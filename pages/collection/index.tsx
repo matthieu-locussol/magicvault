@@ -44,10 +44,10 @@ const Collection = () => {
 		<Layout
 			title={<Title title="My collection" count={store.profile.ownedCards.length} price={prices.usd} />}>
 			<Column type="left">
-				<Card>
+				{/* <Card>
 					<h1>Filters</h1>
 					<p>Work in progress.</p>
-				</Card>
+				</Card> */}
 				{store.profile.ownedCollectionId && (
 					<CardOwnedLink collectionId={store.profile.ownedCollectionId} />
 				)}

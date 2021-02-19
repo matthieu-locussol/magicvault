@@ -1,7 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button, CircularProgress, useMediaQuery } from '@material-ui/core';
-import { FolderRounded as CollectionIcon, SyncAltRounded as TradeIcon } from '@material-ui/icons';
+import {
+	FolderRounded as CollectionIcon,
+	// SyncAltRounded as TradeIcon
+} from '@material-ui/icons';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import { useSession } from 'next-auth/client';
 import MenuMobile from '@/components/Header/Menu/MenuMobile';
@@ -37,11 +40,11 @@ const Menu = () => {
 			title: 'My collection',
 			icon: <CollectionIcon />,
 		},
-		{
-			href: '/needed',
-			title: 'Needed cards',
-			icon: <TradeIcon />,
-		},
+		// {
+		// 	href: '/needed',
+		// 	title: 'Needed cards',
+		// 	icon: <TradeIcon />,
+		// },
 	];
 
 	return (
